@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="hcn.js"></script>
+</head>
+<style>
+    canvas{
+        margin: auto;
+        display: block;
+    }
+</style>
+
+<!--<button onclick="Tinh">Tinh</button>-->
+
+<!--<canvas id="hinhChuNhat" width="1000" height="500" style="border: 10px solid pink"></canvas>-->
+<body>
+<table border="1px" style="width: 100%">
+    <tr>
+        <td colspan="2">
+            <canvas id="hinhChuNhat" width="800" height="500" style="border: 5px solid pink"></canvas>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Chieu Dai</label>
+        </td>
+        <td>
+            <input id="chieuDai">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Chieu Rong</label>
+        </td>
+        <td>
+            <input id="chieuRong">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Chu vi:</label>
+        </td>
+        <td>
+            <h1 id="chuVi"></h1>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Dien Tich:</label>
+        </td>
+        <td>
+            <h1 id="dienTich"></h1>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label>Toa do X</label>
+        </td>
+        <td>
+            <input id="toaDox">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Toa do Y</label>
+        </td>
+        <td>
+            <input id="toaDoy">
+        </td>
+    </tr>
+    <tr>
+    <td>
+        <button onclick="hinhChuNhat()">Ket qua:</button>
+    </td>
+</tr>
+</table>
+<script>
+    function hinhChuNhat() {
+        let chieuDai = +document.getElementById('chieuDai').value;
+        let chieuRong = +document.getElementById('chieuRong').value;
+        let hinhChuNhat1 = new HinhChuNhat(chieuDai, chieuRong);
+        let cv = hinhChuNhat1.getCv();
+        let dt = hinhChuNhat1.getDt();
+        document.getElementById('chuVi').innerHTML = cv
+        document.getElementById('dienTich').innerHTML = dt
+        ///
+        let toaDoX = +document.getElementById('toaDox').value;
+        let toaDoY = +document.getElementById('toaDoy').value;
+        ////
+        let canvas = document.getElementById('hinhChuNhat');
+        let ctx = canvas.getContext('2d')
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.beginPath()
+        ctx.fillStyle='red'
+        ctx.fillRect(toaDoX,toaDoY,chieuDai,chieuRong)
+        ctx.fill()
+        ctx.closePath()
+
+    }
+</script>
+</body>
+</html>
